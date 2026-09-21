@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StopScroll</string>
+    <string name="accessibility_service_description">Stops endless scrolling by tracking target apps and triggering focus blocks.</string>
+    <string name="accessibility_service_summary">Used for detecting scrolling apps and enforcing blockers.</string>
+</resources>
