@@ -19,12 +19,12 @@ android {
         buildConfigField(
             "String",
             "GITHUB_RELEASES_API_URL",
-            "\"https://api.github.com/repos/REPLACE_OWNER/REPLACE_REPO/releases/latest\""
+            "\"https://api.github.com/repos/Anandrajbgp/apptree/releases/latest\""
         )
         buildConfigField(
             "String",
             "FALLBACK_APK_URL",
-            "\"https://odlix.app/stopscroll-latest.apk\""
+            "\"https://github.com/Anandrajbgp/apptree/releases/latest\""
         )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
