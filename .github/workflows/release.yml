@@ -33,13 +33,26 @@ jobs:
             echo "Missing secret KEYSTORE_BASE64 — add it in repo Settings → Secrets"
             exit 1
           fi
-          # Strip whitespace/newlines from copy-paste; fail clearly if invalid
-          printf '%s' "$KEYSTORE_BASE64" | tr -d '\n\r\t ' | base64 -d > "$GITHUB_WORKSPACE/stopscroll-release.jks"
-          if [ ! -s "$GITHUB_WORKSPACE/stopscroll-release.jks" ]; then
-            echo "Decoded keystore is empty — KEYSTORE_BASE64 may be truncated or invalid"
-            exit 1
-          fi
-          echo "Keystore decoded ($(($(wc -c < "$GITHUB_WORKSPACE/stopscroll-release.jks"))) bytes)"
+          python3 - <<'PY'
+          import base64, os, re, sys
+          raw = os.environ.get("KEYSTORE_BASE64", "")
+          cleaned = re.sub(r"[^A-Za-z0-9+/=]", "", raw)
+          if len(cleaned) < 100:
+              print(f"KEYSTORE_BASE64 too short after cleanup ({len(cleaned)} chars)", file=sys.stderr)
+              sys.exit(1)
+          try:
+              data = base64.b64decode(cleaned, validate=False)
+          except Exception as e:
+              print(f"base64 decode failed: {e}", file=sys.stderr)
+              sys.exit(1)
+          if len(data) < 100:
+              print(f"Decoded keystore too small ({len(data)} bytes)", file=sys.stderr)
+              sys.exit(1)
+          path = os.path.join(os.environ["GITHUB_WORKSPACE"], "stopscroll-release.jks")
+          with open(path, "wb") as f:
+              f.write(data)
+          print(f"Keystore decoded ({len(data)} bytes, from {len(cleaned)} base64 chars)")
+          PY
 
       - name: Build Release APK
         env:
