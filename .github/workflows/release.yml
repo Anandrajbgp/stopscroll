@@ -30,10 +30,16 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
           if [ -z "$KEYSTORE_BASE64" ]; then
-            echo "Missing secret KEYSTORE_BASE64"
+            echo "Missing secret KEYSTORE_BASE64 — add it in repo Settings → Secrets"
             exit 1
           fi
-          echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/stopscroll-release.jks"
+          # Strip whitespace/newlines from copy-paste; fail clearly if invalid
+          printf '%s' "$KEYSTORE_BASE64" | tr -d '\n\r\t ' | base64 -d > "$GITHUB_WORKSPACE/stopscroll-release.jks"
+          if [ ! -s "$GITHUB_WORKSPACE/stopscroll-release.jks" ]; then
+            echo "Decoded keystore is empty — KEYSTORE_BASE64 may be truncated or invalid"
+            exit 1
+          fi
+          echo "Keystore decoded ($(($(wc -c < "$GITHUB_WORKSPACE/stopscroll-release.jks"))) bytes)"
 
       - name: Build Release APK
         env:
