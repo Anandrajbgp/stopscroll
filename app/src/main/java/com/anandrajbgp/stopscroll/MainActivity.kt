@@ -1,4 +1,4 @@
-package com.example.stopscroll
+package com.anandrajbgp.stopscroll
 
 import android.content.Context
 import android.os.Bundle
@@ -21,8 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.stopscroll.ui.theme.CharcoalBlack
-import com.example.stopscroll.ui.theme.StopScrollTheme
+import com.anandrajbgp.stopscroll.ui.theme.CharcoalBlack
+import com.anandrajbgp.stopscroll.ui.theme.StopScrollTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

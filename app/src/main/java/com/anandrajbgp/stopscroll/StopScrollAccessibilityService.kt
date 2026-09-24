@@ -1,4 +1,4 @@
-package com.example.stopscroll
+package com.anandrajbgp.stopscroll
 
 import android.accessibilityservice.AccessibilityService
 import android.util.Log

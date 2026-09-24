@@ -1,4 +1,4 @@
-package com.example.stopscroll
+package com.anandrajbgp.stopscroll
 
 import org.junit.Test
 

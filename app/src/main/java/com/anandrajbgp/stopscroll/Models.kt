@@ -1,4 +1,4 @@
-package com.example.stopscroll
+package com.anandrajbgp.stopscroll
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector

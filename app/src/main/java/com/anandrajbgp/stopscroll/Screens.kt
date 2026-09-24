@@ -1,4 +1,4 @@
-package com.example.stopscroll
+package com.anandrajbgp.stopscroll
 
 import android.content.Context
 import android.content.Intent
@@ -58,7 +58,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.stopscroll.ui.theme.*
+import com.anandrajbgp.stopscroll.ui.theme.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

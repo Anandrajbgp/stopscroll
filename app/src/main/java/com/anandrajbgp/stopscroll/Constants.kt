@@ -1,4 +1,4 @@
-package com.example.stopscroll
+package com.anandrajbgp.stopscroll
 
 const val PREFS_NAME = "stopscroll_prefs"
 const val KEY_ONBOARDING_COMPLETED = "onboarding_completed"
